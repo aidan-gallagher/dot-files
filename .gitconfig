@@ -1,0 +1,8 @@
+[alias]
+	st = status
+	visited = "!f() { \
+		git reflog |\
+		grep -o 'checkout: moving from .* to ' |\
+		sed -e 's/checkout: moving from //' -e 's/ to $//'  |\
+		head -20; \
+      }; f"
