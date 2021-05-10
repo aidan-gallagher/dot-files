@@ -6,3 +6,14 @@
 		sed -e 's/checkout: moving from //' -e 's/ to $//'  |\
 		head -20; \
       }; f"
+[user]
+	email = aidan.gallagher@intl.att.com
+	name = Aidan Gallagher
+[credential]
+	helper = store
+[core]
+	editor = code --wait
+[diff]
+    tool = default-difftool
+[difftool "default-difftool"]
+    cmd = code --wait --diff $LOCAL $REMOTE
