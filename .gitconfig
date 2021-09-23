@@ -5,7 +5,8 @@
 		grep -o 'checkout: moving from .* to ' |\
 		sed -e 's/checkout: moving from //' -e 's/ to $//'  |\
 		head -20; \
-      }; f"
+     		}; f"
+	amend-to = "!f() { SHA=`git rev-parse \"$1\"`; git commit --fixup \"$SHA\" && GIT_SEQUENCE_EDITOR=true git rebase --interactive --autosquash \"$SHA^\"; }; f"
 [user]
 	email = aidan.gallagher@intl.att.com
 	name = Aidan Gallagher
