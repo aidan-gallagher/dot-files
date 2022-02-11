@@ -1,5 +1,6 @@
 // Place your key bindings in this file to override the defaultsauto[]
 [
-    { "key": "alt+left",  "command": "workbench.action.navigateBack" },
-    { "key": "alt+right", "command": "workbench.action.navigateForward" }
+    { "key": "alt+left"    , "command": "workbench.action.navigateBack" },
+    { "key": "alt+right"   , "command": "workbench.action.navigateForward" }
+    { "key": "ctrl+shift+z", "command": "workbench.action.toggleZenMode" },
 ]
