@@ -3,3 +3,4 @@
 code --install-extension ue.alphabetical-sorter
 code --install-extension stackbreak.comment-divider
 code --install-extension eamodio.gitlens
+code --install-extension alefragnani.Bookmarks
