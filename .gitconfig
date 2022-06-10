@@ -1,11 +1,15 @@
 [alias]
 	st = status
+	
+	# See previous branches you had checked out
 	visited = "!f() { \
 		git reflog |\
 		grep -o 'checkout: moving from .* to ' |\
 		sed -e 's/checkout: moving from //' -e 's/ to $//'  |\
 		head -20; \
      		}; f"
+		
+	# Add changes to an older commit
 	amend-to = "!f() { SHA=`git rev-parse \"$1\"`; git commit --fixup \"$SHA\" && GIT_SEQUENCE_EDITOR=true git rebase --interactive --autosquash \"$SHA^\"; }; f"
 	
 	# Interactive rebase
