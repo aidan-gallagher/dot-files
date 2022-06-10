@@ -8,8 +8,12 @@
      		}; f"
 	amend-to = "!f() { SHA=`git rev-parse \"$1\"`; git commit --fixup \"$SHA\" && GIT_SEQUENCE_EDITOR=true git rebase --interactive --autosquash \"$SHA^\"; }; f"
 	
-	# interactive rebase
+	# Interactive rebase
 	ir = "!f() { git rebase -i `git merge-base HEAD master`; }; f"
+	
+	# What's changed after doing `git pull`
+	news = log HEAD@{1}..HEAD@{0}
+	
 [user]
 	email = aidan.gallagher@intl.att.com
 	name = Aidan Gallagher
