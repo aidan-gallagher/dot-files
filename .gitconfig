@@ -8,8 +8,8 @@
      		}; f"
 	amend-to = "!f() { SHA=`git rev-parse \"$1\"`; git commit --fixup \"$SHA\" && GIT_SEQUENCE_EDITOR=true git rebase --interactive --autosquash \"$SHA^\"; }; f"
 	
-	# git rewrite
-	rw = "!f() { git rebase -i `git merge-base HEAD master`; }; f"
+	# interactive rebase
+	ir = "!f() { git rebase -i `git merge-base HEAD master`; }; f"
 [user]
 	email = aidan.gallagher@intl.att.com
 	name = Aidan Gallagher
