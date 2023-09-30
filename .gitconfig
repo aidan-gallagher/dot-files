@@ -19,7 +19,7 @@
 	news = log HEAD@{1}..HEAD@{0}
 	
 [user]
-	email = aidan.gallagher@intl.att.com
+	email = apjgallagher@gmail.com
 	name = Aidan Gallagher
 [credential]
 	helper = store
