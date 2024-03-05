@@ -10,7 +10,7 @@ compare(){
     COMPARE_FOLDERS=DIFF code $1 $2 
 }
 
-function n() {
+n() {
     "$@" && notify-send "Command Completed: $*"
 }
 
