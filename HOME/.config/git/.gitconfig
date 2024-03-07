@@ -17,6 +17,9 @@
 	
 	# What's changed after doing `git pull`
 	news = log HEAD@{1}..HEAD@{0}
+
+	# Get bitbucket PR (git pr 29)
+	pr  = "!f() { git fetch -fu ${2:-$(git remote |grep ^upstream || echo origin)} refs/pull-requests/$1/from:pr/$1 && git checkout pr/$1; }; f"
 	
 [user]
 	email = apjgallagher@gmail.com
