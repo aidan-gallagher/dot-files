@@ -1,6 +1,6 @@
 [alias]
 	st = status
-	
+
 	# See previous branches you had checked out
 	visited = "!f() { \
 		git reflog |\
@@ -8,19 +8,19 @@
 		sed -e 's/checkout: moving from //' -e 's/ to $//'  |\
 		head -20; \
      		}; f"
-		
+
 	# Add changes to an older commit
-	amend-to = "!f() { SHA=`git rev-parse \"$1\"`; git commit --fixup \"$SHA\" && GIT_SEQUENCE_EDITOR=true git rebase --interactive --autosquash \"$SHA^\"; }; f"
-	
+	amend-to = '!f() { SHA=`git rev-parse "$1"`; git stash -k && git commit --fixup "$SHA" && GIT_SEQUENCE_EDITOR=true git rebase --interactive --autosquash "$SHA^" && git stash pop; }; f'
+
 	# Interactive rebase
 	ir = "!f() { git rebase -i `git merge-base HEAD master`; }; f"
-	
+
 	# What's changed after doing `git pull`
 	news = log HEAD@{1}..HEAD@{0}
 
 	# Get bitbucket PR (git pr 29)
 	pr  = "!f() { git fetch -fu ${2:-$(git remote |grep ^upstream || echo origin)} refs/pull-requests/$1/from:pr/$1 && git checkout pr/$1; }; f"
-	
+
 [user]
 	email = apjgallagher@gmail.com
 	name = Aidan Gallagher
