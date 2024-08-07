@@ -10,7 +10,7 @@
      		}; f"
 
 	# Add changes to an older commit
-	amend-to = '!f() { SHA=`git rev-parse "$1"`; git stash -k && git commit --fixup "$SHA" && GIT_SEQUENCE_EDITOR=true git rebase --interactive --autosquash "$SHA^" && git stash pop; }; f'
+	amend-to = "!f() { SHA=`git rev-parse \"$1\"`; git stash -k && git commit --fixup \"$SHA\" && GIT_SEQUENCE_EDITOR=true git rebase --interactive --autosquash \"$SHA^\" && git stash pop; }; f"
 
 	# Interactive rebase
 	ir = "!f() { git rebase -i `git merge-base HEAD master`; }; f"
@@ -34,5 +34,3 @@
 	cmd = code --wait --diff $LOCAL $REMOTE
 [pull]
         rebase = true
-[commit]
-        gpgSign = true
