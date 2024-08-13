@@ -22,7 +22,7 @@
 	pr  = "!f() { git fetch -fu ${2:-$(git remote |grep ^upstream || echo origin)} refs/pull-requests/$1/from:pr/$1 && git checkout pr/$1; }; f"
 
 [user]
-	email = apjgallagher@gmail.com
+	email = aidan@cloudflare.com
 	name = Aidan Gallagher
 [credential]
 	helper = store
@@ -33,4 +33,4 @@
 [difftool "default-difftool"]
 	cmd = code --wait --diff $LOCAL $REMOTE
 [pull]
-        rebase = true
+    rebase = true
