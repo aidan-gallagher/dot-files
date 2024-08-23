@@ -1,7 +1,1 @@
-# Develop Laptop Setup 
-
-
-
-
-## Things not in the makefile
-ykman otp swap
+# Personal Laptop Setup

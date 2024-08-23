@@ -3,11 +3,12 @@ parse_git_branch() {
 }
 
 f() {
-    find -name "*$1*" 
+    find -name "*$1*"
 }
 
+# This requires the following VSCode extension: moshfeu.compare-folders
 compare(){
-    COMPARE_FOLDERS=DIFF code $1 $2 
+    COMPARE_FOLDERS=DIFF code $1 $2
 }
 
 n() {

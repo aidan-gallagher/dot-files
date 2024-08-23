@@ -8,3 +8,4 @@ code --install-extension eamodio.gitlens
 code --install-extension alefragnani.Bookmarks
 code --install-extension AykutSarac.jsoncrack-vscode
 code --install-extension ryu1kn.partial-diff
+code --install-extension moshfeu.compare-folders
