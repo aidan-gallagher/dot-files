@@ -7,8 +7,12 @@ f() {
 }
 
 # This requires the following VSCode extension: moshfeu.compare-folders
-compare(){
+folder-compare(){
     COMPARE_FOLDERS=DIFF code $1 $2
+}
+
+file-compare(){
+    code --diff $1 $2
 }
 
 n() {
