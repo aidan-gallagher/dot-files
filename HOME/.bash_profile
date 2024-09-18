@@ -2,16 +2,23 @@ parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
+# Find file
 f() {
     find -name "*$1*"
 }
 
+# Grep history
+gh() {
+    history | grep "$1"
+}
+
+
 # This requires the following VSCode extension: moshfeu.compare-folders
-folder-compare(){
+compare-folder(){
     COMPARE_FOLDERS=DIFF code $1 $2
 }
 
-file-compare(){
+compare-file(){
     code --diff $1 $2
 }
 
