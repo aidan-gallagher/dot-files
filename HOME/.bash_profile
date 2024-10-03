@@ -39,7 +39,7 @@ ssh_sonic() {
   local ip_suffix="$1"
 
   # Combine the prefix directly with the provided suffix
-  local full_ip="192.168.${ip_suffix}"
+  local full_ip="192.168.122.${ip_suffix}"
 
   # SSH into the VM using sshpass and provided options
   sshpass -p "$password" ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no admin@"$full_ip"
@@ -50,7 +50,7 @@ scp_sonic() {
   local ip_suffix="$1"
 
   # Combine the prefix directly with the provided suffix
-  local full_ip="192.168.${ip_suffix}"
+  local full_ip="192.168.122.${ip_suffix}"
 
   # Local file to transfer
   local local_file="$2"
@@ -60,4 +60,19 @@ scp_sonic() {
 
   # Securely copy the file using sshpass and scp with provided options
   sshpass -p "$password" scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no "$local_file" admin@"$full_ip":"/home/admin"
+}
+
+install_sonic() {
+    # Assign arguments with default values
+    local vm_name="${1:-sonic}"                       
+    local img_path="${2:-./sonic-vs-full-passwd.img}"   
+
+    # Run the virt-install command
+    virt-install \
+    --name "$vm_name" \
+    --memory 6000 \
+    --os-variant debian12 \
+    --disk path="$img_path" \
+    --import \
+    --graphics none
 }
