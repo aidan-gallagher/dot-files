@@ -4,4 +4,5 @@
     "editor.detectIndentation": true,
     "files.trimTrailingWhitespace": true,
     "terminal.integrated.scrollback": 100000,
+    "git.detectSubmodulesLimit": 100,
 }
