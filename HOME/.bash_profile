@@ -31,7 +31,7 @@ export PS1="\[\033[32m\]\w:\$(parse_git_branch)\[\033[00m\]\n$ "
 
 # CF
 
-ssh_sonic() {
+ssh-sonic() {
   # Set default password if not provided
   local password="${2:-YourPaSsWoRd}"
 
@@ -45,7 +45,7 @@ ssh_sonic() {
   sshpass -p "$password" ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no admin@"$full_ip"
 }
 
-scp_sonic() {
+scp-sonic() {
   # Use the provided last part of the IP address
   local ip_suffix="$1"
 
@@ -62,10 +62,10 @@ scp_sonic() {
   sshpass -p "$password" scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no "$local_file" admin@"$full_ip":"/home/admin"
 }
 
-install_sonic() {
-    # Assign arguments with default values
-    local vm_name="${1:-sonic}"                       
-    local img_path="${2:-./sonic-vs-full-passwd.img}"   
+install-sonic() {
+    # Assign arguments with default values                      
+    local img_path="${1:-./sonic-vs.img}" 
+    local vm_name=$(basename $img_path .img)
 
     # Run the virt-install command
     virt-install \
