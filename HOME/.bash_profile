@@ -46,14 +46,15 @@ ssh-sonic() {
 }
 
 scp-sonic() {
+
+  # Local file to transfer
+  local local_file="$1"
+
   # Use the provided last part of the IP address
-  local ip_suffix="$1"
+  local ip_suffix="$2"
 
   # Combine the prefix directly with the provided suffix
   local full_ip="192.168.122.${ip_suffix}"
-
-  # Local file to transfer
-  local local_file="$2"
 
   # Set default password if not provided
   local password="${3:-YourPaSsWoRd}"
