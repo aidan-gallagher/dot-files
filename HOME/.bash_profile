@@ -29,9 +29,9 @@ n() {
 export PS1="\[\033[32m\]\w:\$(parse_git_branch)\[\033[00m\]\n$ "
 
 
-# CF
+# SONiC specific functions
 
-ssh-sonic() {
+sonic-ssh() {
   # Set default password if not provided
   local password="${2:-YourPaSsWoRd}"
 
@@ -45,7 +45,7 @@ ssh-sonic() {
   sshpass -p "$password" ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no admin@"$full_ip"
 }
 
-scp-sonic() {
+sonic-scp() {
 
   # Local file to transfer
   local local_file="$1"
@@ -63,12 +63,19 @@ scp-sonic() {
   sshpass -p "$password" scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no "$local_file" admin@"$full_ip":"/home/admin"
 }
 
-install-sonic() {
-    # Assign arguments with default values                      
-    local img_path="${1:-./sonic-vs.img}" 
-    local vm_name=$(basename $img_path .img)
+sonic-install() {
 
-    # Run the virt-install command
+    # Path to .img or .img.gz file                     
+    local img_path="${1:-./sonic-vs.img}" 
+
+    if [[ "$img_path" == *.gz ]]; then
+        echo "Image is compressed, decompressing..."
+        gzip -d "$img_path"
+        img_path="${img_path%.gz}"
+    fi
+
+    local vm_name=$(basename $img_path .img)
+    
     virt-install \
     --name "$vm_name" \
     --memory 6000 \
