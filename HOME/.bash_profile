@@ -84,4 +84,19 @@ sonic-install() {
     --import \
     --graphics none \
     --noautoconsole
+
+    echo "Waiting for VM to start and get IP address..."
+    local ip_info
+    while true; do
+        ip_info=$(virsh domifaddr "$vm_name" | grep ipv4)
+
+        # Check if the IP address was found
+        if [[ -n "$ip_info" ]]; then
+            echo "VM is up and running. IP information:"
+            echo "$ip_info"
+            break
+        else
+            sleep 3
+        fi
+    done
 }
