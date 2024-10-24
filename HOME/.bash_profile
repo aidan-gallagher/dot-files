@@ -82,5 +82,6 @@ sonic-install() {
     --os-variant debian12 \
     --disk path="$img_path" \
     --import \
-    --graphics none
+    --graphics none \
+    --noautoconsole
 }
