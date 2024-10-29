@@ -12,8 +12,19 @@
 	# Add changes to an older commit
 	amend-to = "!f() { SHA=`git rev-parse \"$1\"`; git stash -k && git commit --fixup \"$SHA\" && GIT_SEQUENCE_EDITOR=true git rebase --interactive --autosquash \"$SHA^\" && git stash pop; }; f"
 
-	# Interactive rebase
-	ir = "!f() { git rebase -i `git merge-base HEAD master`; }; f"
+	# Interactive Rebase Alias (ir)
+	# Rebases interactively from:
+	# - HEAD~20 if on main (or master if main doesn’t exist)
+	# - Common ancestor with main (or master) if on any other branch
+	ir = "!f() { \
+		target_branch=$(git branch --list main >/dev/null 2>&1 && echo main || echo master); \
+		if [ $(git rev-parse --abbrev-ref HEAD) = \"$target_branch\" ]; then \
+			git rebase -i HEAD~20; \
+		else \
+			git rebase -i $(git merge-base HEAD $target_branch); \
+		fi; \
+	}; f"
+
 
 	# What's changed after doing `git pull`
 	news = log HEAD@{1}..HEAD@{0}
