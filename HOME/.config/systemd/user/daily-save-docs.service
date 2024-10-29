@@ -1,0 +1,6 @@
+[Unit]
+Description=Daily Git Commit for Documents Folder
+
+[Service]
+Type=oneshot
+ExecStart=/home/aidan/bin/save-docs

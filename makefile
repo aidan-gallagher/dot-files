@@ -7,7 +7,9 @@ download-packages:
 	sudo apt-get install --yes --no-install-recommends $(cat packages.txt)
 
 dot-files:
-# Extra logic required to copy hidden files
+# Copy HOME directory to HOME
+# Second copy is necessary to copy hidden files (begining with ".")
+	cp --recursive HOME/* ${HOME}/
 	cp --recursive HOME/.[^.]* ${HOME}/
 
 vscode-extensions:

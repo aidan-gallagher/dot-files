@@ -1,0 +1,30 @@
+#!/bin/bash
+
+set -e
+
+# Navigate to the Documents directory
+cd ~/Documents || exit
+
+# Check if it's a Git repository
+if ! git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
+    echo "Error: ~/Documents is not a Git repository. Exiting."
+    exit 1
+fi
+
+# Check if there are any changes to commit
+if git diff --quiet && git diff --cached --quiet; then
+    echo "No changes to commit."
+    exit 0
+fi
+
+# Add all changes
+git add .
+
+# Commit with a message including the date and time
+commit_message="Daily commit - $(date '+%Y-%m-%d %H:%M:%S')"
+git commit -m "$commit_message"
+
+# Push to a remote repository
+git push origin main 
+
+echo "Committed all changes for $(date '+%Y-%m-%d')"
