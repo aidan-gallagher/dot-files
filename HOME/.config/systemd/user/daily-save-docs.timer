@@ -2,7 +2,7 @@
 Description=Run Daily Git Commit at the End of Day
 
 [Timer]
-OnCalendar=23:59
+OnCalendar=hourly
 Persistent=true
 
 [Install]
