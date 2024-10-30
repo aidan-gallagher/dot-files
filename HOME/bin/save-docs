@@ -24,7 +24,10 @@ git add .
 commit_message="Daily commit - $(date '+%Y-%m-%d %H:%M:%S')"
 git commit -m "$commit_message"
 
-# Push to a remote repository
-git push origin main 
+# Attempt to push to the remote repository; handle failure if no internet
+if ! git push origin main; then
+    echo "Push failed: No internet connection or remote issue. Changes committed locally."
+    exit 0
+fi
 
 echo "Committed all changes for $(date '+%Y-%m-%d')"
