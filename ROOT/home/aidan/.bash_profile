@@ -30,43 +30,52 @@ export PS1="\[\033[32m\]\w:\$(parse_git_branch)\[\033[00m\]\n$ "
 
 
 # SONiC specific functions
+# Todo: refactor into script
 
 sonic-ssh() {
-  # Set default password if not provided
-  local password="${2:-YourPaSsWoRd}"
 
-  # Use the provided last part of the IP address
-  local ip_suffix="$1"
+    # Dependencies: sudo apt install sshpass
 
-  # Combine the prefix directly with the provided suffix
-  local full_ip="192.168.122.${ip_suffix}"
+    # Set default password if not provided
+    local password="${2:-YourPaSsWoRd}"
 
-  # SSH into the VM using sshpass and provided options
-  sshpass -p "$password" ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no admin@"$full_ip"
+    # Use the provided last part of the IP address
+    local ip_suffix="$1"
+
+    # Combine the prefix directly with the provided suffix
+    local full_ip="192.168.122.${ip_suffix}"
+
+    # SSH into the VM using sshpass and provided options
+    sshpass -p "$password" ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no admin@"$full_ip"
 }
 
 sonic-scp() {
 
-  # Local file to transfer
-  local local_file="$1"
+    # Dependencies: sudo apt install sshpass
 
-  # Use the provided last part of the IP address
-  local ip_suffix="$2"
+    # Local file to transfer
+    local local_file="$1"
 
-  # Combine the prefix directly with the provided suffix
-  local full_ip="192.168.122.${ip_suffix}"
+    # Use the provided last part of the IP address
+    local ip_suffix="$2"
 
-  # Set default password if not provided
-  local password="${3:-YourPaSsWoRd}"
+    # Combine the prefix directly with the provided suffix
+    local full_ip="192.168.122.${ip_suffix}"
 
-  # Securely copy the file using sshpass and scp with provided options
-  sshpass -p "$password" scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no "$local_file" admin@"$full_ip":"/home/admin"
+    # Set default password if not provided
+    local password="${3:-YourPaSsWoRd}"
+
+    # Securely copy the file using sshpass and scp with provided options
+    sshpass -p "$password" scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no "$local_file" admin@"$full_ip":"/home/admin"
 }
 
 sonic-install() {
 
-    # Path to .img or .img.gz file                     
-    local img_path="${1:-./sonic-vs.img}" 
+    # Dependencies: sudo apt install virt-manager libvirt-clients libvirt-daemon
+    # reboot might be required
+
+    # Path to .img or .img.gz file
+    local img_path="${1:-./sonic-vs.img}"
 
     if [[ "$img_path" == *.gz ]]; then
         echo "Image is compressed, decompressing..."
@@ -75,7 +84,7 @@ sonic-install() {
     fi
 
     local vm_name=$(basename $img_path .img)
-    
+
     virt-install \
     --name "$vm_name" \
     --memory 6000 \
