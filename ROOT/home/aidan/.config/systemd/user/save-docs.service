@@ -1,0 +1,6 @@
+[Unit]
+Description=Save Documents folder by commiting and pushing to remote
+
+[Service]
+Type=oneshot
+ExecStart=/home/aidan/bin/save-docs

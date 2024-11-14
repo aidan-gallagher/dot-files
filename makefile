@@ -6,7 +6,7 @@ copy-files:
 
 run:
 	sudo apt-get install --yes --no-install-recommends $(cat deb-pkgs.txt)
-	systemctl --user enable daily-save-docs.timer
+	systemctl --user enable save-docs.timer
 	./vscode-extensions.sh
 
 # ------------------------------- Secret Files ------------------------------- #
