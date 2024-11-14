@@ -6,7 +6,7 @@ copy-files:
 
 run:
 	sudo apt-get install --yes --no-install-recommends $(cat deb-pkgs.txt)
-	systemctl --user enable save-docs.timer
+	systemctl --user enable --now save-docs.timer
 	./vscode-extensions.sh
 
 # ------------------------------- Secret Files ------------------------------- #
@@ -22,3 +22,4 @@ decrpyt-secret-files:
 
 encrypt-secret-files:
 	tar cz dot-files-secret/ROOT-secret | gpg --symmetric > dot-files-secret/ROOT-secret.tar.gz.gpg && rm -r dot-files-secret/ROOT-secret
+# ---------------------------------------------------------------------------- #
