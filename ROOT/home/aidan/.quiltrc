@@ -1,0 +1,4 @@
+QUILT_DIFF_OPTS="--binary --text"
+QUILT_PATCH_OPTS="--binary"
+QUILT_DIFF_ARGS="--no-timestamps"
+QUILT_REFRESH_ARGS="--no-timestamps"
