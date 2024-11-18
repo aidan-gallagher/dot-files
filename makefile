@@ -8,6 +8,8 @@ run:
 	sudo apt-get install --yes --no-install-recommends $(cat deb-pkgs.txt)
 	systemctl --user enable --now save-docs.timer
 	./vscode-extensions.sh
+	grep -qxF 'source ~/.bashrc_aidan' ~/.bashrc || echo 'source ~/.bashrc_aidan' >> ~/.bashrc
+
 
 # ------------------------------- Secret Files ------------------------------- #
 copy-secret-files: clone-secret-files decrpyt-secret-files
