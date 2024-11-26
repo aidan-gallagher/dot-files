@@ -109,3 +109,7 @@ sonic-install() {
         fi
     done
 }
+
+sonic-slave(){
+    docker run -it --mount src="$(pwd)",target=/src,type=bind sonicdev-microsoft.azurecr.io:443/sonic-slave-bullseye /bin/bash
+}
