@@ -1,5 +1,5 @@
 [Unit]
-Description=Save Documents folder by commiting and pushing to remote
+Description=Save Documents folder by commiting and pushing to remote repository.
 
 [Service]
 Type=oneshot

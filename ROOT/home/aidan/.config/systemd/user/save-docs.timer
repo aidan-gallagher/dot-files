@@ -1,5 +1,5 @@
 [Unit]
-Description=Run Daily Git Commit at the End of Day
+Description=Run hourly commit to save documents.
 
 [Timer]
 OnCalendar=hourly
