@@ -81,5 +81,5 @@ sonic-install() {
 }
 
 sonic-slave(){
-    docker run -it --mount src="$(pwd)",target=/src,type=bind sonicdev-microsoft.azurecr.io:443/sonic-slave-bullseye /bin/bash
+    docker run -it -v ~/.bash_history:/root/.bash_history:rw --workdir /src --mount src="$(pwd)",target=/src,type=bind sonicdev-microsoft.azurecr.io:443/sonic-slave-bullseye /bin/bash
 }
