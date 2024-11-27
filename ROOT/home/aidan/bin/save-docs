@@ -14,20 +14,14 @@ fi
 # Check if there are any changes to commit
 if git diff --quiet && git diff --cached --quiet; then
     echo "No changes to commit."
-    exit 0
+else
+    git add .
+    commit_message="Hourly commit - $(date '+%Y-%m-%d %H:%M:%S')"
+    git commit -m "$commit_message"
 fi
-
-# Add all changes
-git add .
-
-# Commit with a message including the date and time
-commit_message="Daily commit - $(date '+%Y-%m-%d %H:%M:%S')"
-git commit -m "$commit_message"
 
 # Attempt to push to the remote repository; handle failure if no internet
 if ! git push origin main; then
     echo "Push failed: No internet connection or remote issue. Changes committed locally."
     exit 0
 fi
-
-echo "Committed all changes for $(date '+%Y-%m-%d')"

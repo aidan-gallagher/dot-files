@@ -11,7 +11,9 @@ run:
 	grep -qxF 'source ~/.config/bash/bashrc_aidan' ~/.bashrc || echo 'source ~/.config/bash/bashrc_aidan' >> ~/.bashrc
 
 # ------------------------------- Secret Files ------------------------------- #
-copy-secret-files: clone-secret-files decrpyt-secret-files
+all-secret-files: clone-secret-files decrpyt-secret-files copy-secret-files
+
+copy-secret-files: 
 	cp --recursive dot-files-secret/ROOT-secret/* /
 
 clone-secret-files:
