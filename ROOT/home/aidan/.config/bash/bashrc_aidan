@@ -3,7 +3,7 @@ parse_git_branch() {
 }
 
 # Find file
-f() {
+find-file() {
     find -name "*$1*"
 }
 

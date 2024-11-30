@@ -1,3 +1,4 @@
 git
 code
 wireshark
+ripgrep
