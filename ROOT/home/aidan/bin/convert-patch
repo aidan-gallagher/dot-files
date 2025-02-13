@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Converts a Git patch for a subrepo into a patch applicable from the parent directory.
+# Adjusts file paths to ensure changes are applied to the subrepo while running from the parent.
+
+if [ "$#" -ne 2 ]; then
+    echo "Usage: $0 <path to patch> <path to submodule>"
+    exit 1
+fi
+
+PATCH_PATH="$1"
+SUBMODULE_PATH="$2"
+
+# Check for binary patch
+if grep -q "^GIT binary patch" "$PATCH_PATH"; then
+    echo "⚠️ Binary patch detected! Please remove that and add it manually after."
+    exit -1
+fi
+
+# Checked for a submodule change
+if grep -q -E '^[+-]Subproject commit' "$PATCH_PATH"; then
+    echo "⚠️ Submodule detected! Please remove that.'$file'."
+    exit -1
+fi
+
+# Add path to submodule to patch
+ESCAPED_SUBMODULE_PATH=$(echo "$SUBMODULE_PATH" | sed 's/\//\\\//g')
+sed -i "s/^\(---\|+++\) \(a\|b\)\//\1 \2\/$ESCAPED_SUBMODULE_PATH\//" "$PATCH_PATH"
