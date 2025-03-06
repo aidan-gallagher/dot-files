@@ -23,6 +23,9 @@ if grep -q -E '^[+-]Subproject commit' "$PATCH_PATH"; then
     exit -1
 fi
 
+# Remove only trailing slashes from SUBMODULE_PATH if they exist so we don't end up with double slashes (tab completion adds it).
+SUBMODULE_PATH=$(echo "$SUBMODULE_PATH" | sed 's/\/$//')
+
 # Add path to submodule to patch
 ESCAPED_SUBMODULE_PATH=$(echo "$SUBMODULE_PATH" | sed 's/\//\\\//g')
 sed -i "s/^\(---\|+++\) \(a\|b\)\//\1 \2\/$ESCAPED_SUBMODULE_PATH\//" "$PATCH_PATH"
