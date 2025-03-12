@@ -14,7 +14,7 @@ run:
 all-secret-files: clone-secret-files decrpyt-secret-files copy-secret-files
 
 copy-secret-files: 
-	cp --recursive dot-files-secret/ROOT-secret/* /
+	cp --archive dot-files-secret/ROOT-secret/* /
 
 clone-secret-files:
 	sudo rm -rf dot-files-secret
